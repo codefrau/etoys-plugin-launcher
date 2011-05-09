@@ -1,211 +1,8 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-   
-   
-
-
-
-
-
-   
-
-
-
-      
-   
-
-
-
-
-
-
-
-
-
-
-   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd ">
-   <html>
-   <head>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd ">
+<html>
+<head>
    <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-
-   <!--[if lte IE 6]>
-   <script type="text/javascript" src="/sm/includes/supersleight.js"></script>
-   <![endif]-->
-
-
-
-
-
-
-   
-   
-
-
-
-
-
-
-
-
-
-<title>Etoys Project</title>
+   <title>Etoys Project</title>
 </head>
 
 <body>
@@ -214,7 +11,10 @@
 
 <script language="javascript">
 
-   //This script detects the Squeakland plugin
+   // This script embeds the Squeakland plugin on the page, depending on the user's platform.
+   // In Sugar (e.g. on an OLPC laptop), it downloads the project directly to the Journal.
+   // Author: Michael Rueger
+   // Modified: Bert Freudenberg
 
    var agt = navigator.userAgent.toLowerCase();
    var ie = (agt.indexOf("msie") != -1);
@@ -286,7 +86,7 @@
               '<a href="/download/">plugin here</a> and then run the installer.<br>\n' +
               'As a Linux user, please install the "Etoys" package from your Linux distribution. ' +
               'That should install the plugin - if it does not, report a bug with your ' +
-              'distribution, and try Etoys-To-Go below.<br><br>\n' +
+              'distribution, and try Etoys-To-Go as explained below.<br><br>\n' +
               'Instead of using the browser plugin, you can download ' +
               '<a href="' + src + '">' + prj +'</a> and open it in Etoys.<br>\n'+
               'Perhaps you want to use <a href="/download/">Etoys-To-Go</a> for that, which should work ' +
