@@ -1,0 +1,301 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+   
+   
+
+
+
+
+
+   
+
+
+
+      
+   
+
+
+
+
+
+
+
+
+
+
+   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd ">
+   <html>
+   <head>
+
+   <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+
+   <!--[if lte IE 6]>
+   <script type="text/javascript" src="/sm/includes/supersleight.js"></script>
+   <![endif]-->
+
+
+
+
+
+
+   
+   
+
+
+
+
+
+
+
+
+
+<title>Etoys Project</title>
+</head>
+
+<body>
+
+<!-- content start -->
+
+<script language="javascript">
+
+   //This script detects the Squeakland plugin
+
+   var agt = navigator.userAgent.toLowerCase();
+   var ie = (agt.indexOf("msie") != -1);
+   var ns = (navigator.appName.indexOf("Netscape") != -1);
+   var win = ((agt.indexOf("win") != -1) || (agt.indexOf("32bit") != -1));
+   var mac = (agt.indexOf("mac") != -1);
+   var olpc = (agt.indexOf("olpc") != -1);
+   var url = document.URL;
+   var src = url.substr(url.indexOf("?")+1);
+   var prj = unescape(src.substr(src.lastIndexOf("/")+1));
+
+   if ( ie && win )
+   {
+      SqueakInstalled = detectIE("SqueakOCX2.SqueakOCX.1", "Squeak");
+   }
+
+   if ( ns || !win )
+   {
+      nse = "";
+      for ( var i = 0; i < navigator.mimeTypes.length; i++ ) nse += navigator.mimeTypes[i].type.toLowerCase();
+
+      SqueakInstalled = nse.indexOf("application/x-squeak-source") != -1;
+   }
+
+   function detectIE( ClassID, name )
+   {
+      result = false;
+      document.write('<' + 'SCRIPT LANGUAGE=VBScript>\n on error resume next \n result = IsObject(CreateObject("' + ClassID + '"))<' + '/SCRIPT>\n');
+      if ( result ) return true;
+      else return false;
+   }
+
+   if ( SqueakInstalled )
+   {
+      document.write('<OBJECT\n' +
+                     'ID="SqueakOCX Control"\n' +
+                     'WIDTH=800 HEIGHT=600\n' +
+                     'ALIGN=center BORDER=2\n' +
+                     'CLASSID="CLSID:2BE9C39E-8386-4435-B337-FCDAD8EAB006"\n' +
+                     'CODEBASE="/content/installers/EtoysInstaller.exe">\n' +
+                     '<PARAM name="src" value="' + src + '">\n' +
+                     '<PARAM name="pluginspage" value="/download/">\n' +
+                     '<PARAM name="apiSupported" value="false">\n' +
+                     '<embed\n' +
+                     'type="application/x-squeak-source"\n' +
+                     'ALIGN="CENTER"\n' +
+                     'WIDTH="800"\n' +
+                     'HEIGHT="600"\n' +
+                     'src="' + src + '"\n' +
+                     'apiSupported="FALSE"\n' +
+                     'pluginspage="/download/"\n' +
+                     '></embed>\n' +
+                     '</OBJECT><br>\n'+
+                     'You may also download <a href="' + src + '">' + prj +'</a> and open it in Etoys.')
+   }
+   else
+   {
+      if ( olpc )
+      {
+          document.write(
+         'Downloading Etoys project <a href="' + src + '">' + prj + '</a>. Please wait.\n'+
+         '<br><br><br><big>When the download is finished, start <b>' + prj + '</b> from your Journal.</big>' );
+          window.location = src;
+      }
+         else
+      {
+            document.write('You do not seem to have the Etoys plugin installed.<br>\n' +
+              'If you are using a Macintosh or Windows PC, please download the ' + 
+              '<a href="/download/">plugin here</a> and then run the installer.<br>\n' +
+              'As a Linux user, please install the "Etoys" package from your Linux distribution. ' +
+              'That should install the plugin - if it does not, report a bug with your ' +
+              'distribution, and try Etoys-To-Go below.<br><br>\n' +
+              'Instead of using the browser plugin, you can download ' +
+              '<a href="' + src + '">' + prj +'</a> and open it in Etoys.<br>\n'+
+              'Perhaps you want to use <a href="/download/">Etoys-To-Go</a> for that, which should work ' +
+              'equally well on Linux, Mac, or Windows machines.\n');
+      }
+   }
+
+</script>
+
+</body>
+
+</html>
