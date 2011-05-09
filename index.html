@@ -26,6 +26,15 @@
    var src = url.substr(url.indexOf("?")+1);
    var prj = unescape(src.substr(src.lastIndexOf("/")+1));
 
+   function _( string )
+   {
+      return string
+       .replace('{dld}', '<a href="/download/">')
+       .replace('{a}', '</a>')
+       .replace('{prjname}', '<b>' + prj + '</b>')
+       .replace('{prjlink}', '<a href="' + src + '">' + prj + '</a>')
+   }
+
    if ( ie && win )
    {
       SqueakInstalled = detectIE("SqueakOCX2.SqueakOCX.1", "Squeak");
@@ -68,29 +77,32 @@
                      'pluginspage="/download/"\n' +
                      '></embed>\n' +
                      '</OBJECT><br>\n'+
-                     'You may also download <a href="' + src + '">' + prj +'</a> and open it in Etoys.')
+                     _('You may also download {prjlink} and open it in Etoys.'))
    }
    else
    {
       if ( olpc )
       {
           document.write(
-         'Downloading Etoys project <a href="' + src + '">' + prj + '</a>. Please wait.\n'+
-         '<br><br><br><big>When the download is finished, start <b>' + prj + '</b> from your Journal.</big>' );
+              _('Downloading Etoys project {prjlink}. Please wait.')
+              + '\n<br><br><br><big>'
+              + _('When the download is finished, start {prjname} from your Journal.')
+              + '</big>' );
           window.location = src;
       }
          else
       {
-            document.write('You do not seem to have the Etoys plugin installed.<br>\n' +
-              'If you are using a Macintosh or Windows PC, please download the ' + 
-              '<a href="/download/">plugin here</a> and then run the installer.<br>\n' +
-              'As a Linux user, please install the "Etoys" package from your Linux distribution. ' +
-              'That should install the plugin - if it does not, report a bug with your ' +
-              'distribution, and try Etoys-To-Go as explained below.<br><br>\n' +
-              'Instead of using the browser plugin, you can download ' +
-              '<a href="' + src + '">' + prj +'</a> and open it in Etoys.<br>\n'+
-              'Perhaps you want to use <a href="/download/">Etoys-To-Go</a> for that, which should work ' +
-              'equally well on Linux, Mac, or Windows machines.\n');
+            document.write(
+              _('You do not seem to have the Etoys plugin installed.')
+              + '<br>\n'
+              + _('If you are using a Macintosh or Windows PC, please download the {dld}plugin{a} and then run the installer.')
+              + '<br>\n' +
+              + _('As a Linux user, please install the "etoys" package from your Linux distribution. That should install the plugin - if it does not, report a bug with your distribution, and try Etoys-To-Go as explained below.')
+              + '<br><br>\n'
+              + _('Instead of using the browser plugin, you can download {prjlink} and open it in Etoys.')
+              + '<br>\n'
+              + _('Perhaps you want to use {dld}Etoys-To-Go{a}, which should work equally well on Linux, Mac, or Windows machines.')
+              + '\n');
       }
    }
 
