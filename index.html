@@ -25,15 +25,10 @@
    var url = document.URL;
    var src = url.substr(url.indexOf("?")+1);
    var prj = unescape(src.substr(src.lastIndexOf("/")+1));
+   var lang = (navigator.language || navigator.userLanguage).substr(0, 2);
 
-   function _( string )
-   {
-      return string
-       .replace('{dld}', '<a href="/download/">')
-       .replace('{a}', '</a>')
-       .replace('{prjname}', '<b>' + prj + '</b>')
-       .replace('{prjlink}', '<a href="' + src + '">' + prj + '</a>')
-   }
+   var translations = new Object();
+   initTranslations();
 
    if ( ie && win )
    {
@@ -46,14 +41,6 @@
       for ( var i = 0; i < navigator.mimeTypes.length; i++ ) nse += navigator.mimeTypes[i].type.toLowerCase();
 
       SqueakInstalled = nse.indexOf("application/x-squeak-source") != -1;
-   }
-
-   function detectIE( ClassID, name )
-   {
-      result = false;
-      document.write('<' + 'SCRIPT LANGUAGE=VBScript>\n on error resume next \n result = IsObject(CreateObject("' + ClassID + '"))<' + '/SCRIPT>\n');
-      if ( result ) return true;
-      else return false;
    }
 
    if ( SqueakInstalled )
@@ -96,16 +83,80 @@
               _('You do not seem to have the Etoys plugin installed.')
               + '<br>\n'
               + _('If you are using a Macintosh or Windows PC, please download the {dld}plugin{a} and then run the installer.')
-              + '<br>\n' +
+              + '<br>\n'
               + _('As a Linux user, please install the "etoys" package from your Linux distribution. That should install the plugin - if it does not, report a bug with your distribution, and try Etoys-To-Go as explained below.')
               + '<br><br>\n'
-              + _('Instead of using the browser plugin, you can download {prjlink} and open it in Etoys.')
+              + _('Instead of using the browser plugin, you can save {prjlink} and open it in Etoys.')
               + '<br>\n'
               + _('Perhaps you want to use {dld}Etoys-To-Go{a}, which should work equally well on Linux, Mac, or Windows machines.')
               + '\n');
       }
    }
 
+   function detectIE( ClassID, name )
+   {
+      result = false;
+      document.write('<' + 'SCRIPT LANGUAGE=VBScript>\n on error resume next \n result = IsObject(CreateObject("' + ClassID + '"))<' + '/SCRIPT>\n');
+      if ( result ) return true;
+      else return false;
+   }
+
+   function translate( string )
+   {
+       if (!translations[lang])
+           return string;
+       for (i = 0; i < translations["en"].length; i++)
+         if (translations["en"][i] == string)
+             return translations[lang][i];
+       document.write("<tt>ERROR: translation strings do not match source</tt><br>\n");
+       return string;
+   }
+
+   function _( string )
+   {
+      return translate(string)
+       .replace('{dld}', '<a href="/download/">')
+       .replace('{a}', '</a>')
+       .replace('{prjname}', '<b>' + prj + '</b>')
+       .replace('{prjlink}', '<a href="' + src + '">' + prj + '</a>')
+   }
+   
+   function initTranslations()
+   {
+       // the pot file with all phrases is generated using js2po 
+       // the following is generated from translated po files using po2js
+       translations['en'] = [
+           'You may also download {prjlink} and open it in Etoys.',
+           'Downloading Etoys project {prjlink}. Please wait.',
+           'When the download is finished, start {prjname} from your Journal.',
+           'You do not seem to have the Etoys plugin installed.',
+           'If you are using a Macintosh or Windows PC, please download the {dld}plugin{a} and then run the installer.',
+           'As a Linux user, please install the "etoys" package from your Linux distribution. That should install the plugin - if it does not, report a bug with your distribution, and try Etoys-To-Go as explained below.',
+           'Instead of using the browser plugin, you can save {prjlink} and open it in Etoys.',
+           'Perhaps you want to use {dld}Etoys-To-Go{a}, which should work equally well on Linux, Mac, or Windows machines.',
+       ];
+       translations['es'] = [
+           'También puede descargar {prjlink} y abrirlo en Etoys.',
+           'Descargando el proyecto de Etoys {prjlink}. Espere por favor.',
+           'Cuando la descarga haya finalizado, inicie {prjname} desde el diario.',
+           'Parece que la extensión de Etoys no ha sido instalada.',
+           'Si está usando Macintosh o una PC con Windows, descargue la {dld}extensión{a} y luego corra el instalador.',
+           'Como usuario de Linux, instale el paquete "etoys" desde su distribución de Linux.  Eso debería instalar la extensión. Si eso no sucede, por favor reporte el error incluyendo su distribución, e intente Etoys-To-Go que se explica debajo.',
+           'En vez de usar la extensión de su navegador, puede guardar {prjlink} y abrirla en Etoys.',
+           'Quizá desea usar {dld}Etoys-To-Go{a}, que debería funcionar bien en ordenadores con Linux, Mac, o Windows.',
+       ];
+       translations['de'] = [
+           'Du kannst auch {prjlink} herunterladen und dann in Etoys öffnen.',
+           'Das Etoysprojekt {prjlink} wird heruntergeladen. Bitte warten.',
+           'Wenn das Herunterladen fertig ist, starte {prjname} von deinem Journal.',
+           'Das Etoys-Plugin ist nicht installiert.',
+           'Falls du einen Apple Macintosh oder Windows-PC benutzt, lade dir bitte das {dld}Plugin{a} herunter und führe das Installationsprogramm aus.',
+           'Als Linux-Benutzer installiere dir bitte das Paket "etoys" deiner Linux-Distribution. Das sollte das Plugin installieren. Falls das nicht funktioniert, solltest du einen Bug an deinen Linux-Distributor melden, und statt dessen Etoys-To-Go probieren, wie unten beschrieben.',
+           'Statt das Browser-Plugin zu verwenden, kannst du {prjlink} auch speichern und in Etoys öffnen.',
+           'Vielleicht möchtest du {dld}Etoys-To-Go{a} verwenden, das sowohl unter Linux als auch auf einem Mac oder Windows-PC funktionieren sollte.',
+       ];
+   }
+   
 </script>
 
 </body>

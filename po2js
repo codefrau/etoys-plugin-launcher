@@ -1,0 +1,42 @@
+#!/usr/bin/python
+import re, sys
+from subprocess import Popen, PIPE
+
+language = sys.argv[1]
+
+def output_js(lang, list):
+    print "        translations['%s'] = [" % lang
+    for l in list:
+        print "            '%s'," % l.replace('\\"', '"')
+    print "        ];"
+
+# convert to iso-8859-1
+po = Popen(['msgconv', '-t', 'iso-8859-1', language + '.po'], stdout=PIPE).communicate()[0]
+
+# remove comment lines
+po = re.sub('#.*\n', '', po)
+
+msgids = []
+msgstrs = []
+
+for entry in re.split('msgid', po):
+	if not entry:
+		continue
+	msgid,msgstr = re.split('msgstr', entry)
+	# remove quotes, join lines
+	msgid  = re.sub('\s*"(.*)"\s*(\n|$)', '\g<1>', msgid)
+	msgstr = re.sub('\s*"(.*)"\s*(\n|$)', '\g<1>', msgstr)
+	if not msgid:
+		continue
+	msgids.append(msgid)
+	msgstrs.append(msgstr)
+
+output_js('en', msgids)
+output_js(language, msgstrs)
+
+
+#	msgid = unquote.search(line[5:]).group(1)
+		
+
+
+
