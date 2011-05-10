@@ -1,11 +1,11 @@
 #!/bin/sh
-# script to generate launcher.pot from index.html
+# script to generate launcher.pot from launcher.html
 #   phrases to be translated must be on a single line
 #   with single quotes, e.g. _('...')
 # Author: Bert Freudenberg
 PROJECTIDVERSION="Etoys Plugin Launcher"
-IN="index.html"
-OUT="launcher.pot"
+IN="etoys-plugin-launcher.html"
+OUT="etoys-plugin-launcher.pot"
 DATE=`date -u "+%Y-%m-%d %H:%M-0000"`
 # output header
 (cat <<__EOF__

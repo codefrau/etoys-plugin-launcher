@@ -1,6 +1,15 @@
 #!/usr/bin/python
+# script to format lang.po files into javascript
+#   the output needs to be pasted into launcher.html for each language
+#   order of phrases must be the same in all languages 
+# Author: Bert Freudenberg
+
 import re, sys
 from subprocess import Popen, PIPE
+
+if len(sys.argv) < 2:
+    print "USAGE: %s <lang>" % sys.argv[0]
+    sys.exit(1)
 
 language = sys.argv[1]
 
@@ -33,9 +42,6 @@ for entry in re.split('msgid', po):
 
 output_js('en', msgids)
 output_js(language, msgstrs)
-
-
-#	msgid = unquote.search(line[5:]).group(1)
 		
 
 
