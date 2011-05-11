@@ -16,7 +16,7 @@ msgid "Downloading Etoys project {prjlink}. Please wait."
 msgstr "Etoysプロジェクト {prjlink} をダウンロード中。お待ちください。"
 
 msgid "When the download is finished, start {prjname} from your Journal."
-msgstr "ダウンロードが終了したら、ジャーナルから {prjlink} を開始してください"
+msgstr "ダウンロードが終了したら、ジャーナルから {prjname} を開始してください"
 
 msgid "You do not seem to have the Etoys plugin installed."
 msgstr "Etoysプラグインがインストールされていないようです。"
