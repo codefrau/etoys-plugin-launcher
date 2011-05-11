@@ -20,7 +20,7 @@ def output_js(lang, list):
     print "        ];"
 
 # convert to iso-8859-1
-po = Popen(['msgconv', '-t', 'iso-8859-1', language + '.po'], stdout=PIPE).communicate()[0]
+po = Popen(['msgconv', '-t', 'UTF-8', language + '.po'], stdout=PIPE).communicate()[0]
 
 # remove comment lines
 po = re.sub('#.*\n', '', po)

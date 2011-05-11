@@ -1,0 +1,34 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Etoys Plugin Launcher\n"
+"POT-Creation-Date: 2011-05-10 17:59-0000\n"
+"PO-Revision-Date: 2011-05-11 08:59-0000\n"
+"Last-Translator: korakurider\n"
+"Language-Team: Japanese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "You may also download {prjlink} and open it in Etoys."
+msgstr "{prjlink} をダウンロードして Etoysで開くこともできます。"
+
+msgid "Downloading Etoys project {prjlink}. Please wait."
+msgstr "Etoysプロジェクト {prjlink} をダウンロード中。お待ちください。"
+
+msgid "When the download is finished, start {prjname} from your Journal."
+msgstr "ダウンロードが終了したら、ジャーナルから {prjlink} を開始してください"
+
+msgid "You do not seem to have the Etoys plugin installed."
+msgstr "Etoysプラグインがインストールされていないようです。"
+
+msgid "If you are using a Macintosh or Windows PC, please download the {dld}plugin{a} and then run the installer."
+msgstr "MacやWindowsのPCを使っているのであれば、{dld}plugin{a}をダウンロードして、インストールしてください。"
+
+msgid "As a Linux user, please install the \"etoys\" package from your Linux distribution. That should install the plugin - if it does not, report a bug with your distribution, and try Etoys-To-Go as explained below."
+msgstr "お使いのLinuxディストリビューションの\"etoys\"パッケージをインストールしてください。そうすればプラグインもインストールされるはずです。-もしインストールされなかったら、お使いのディストリビューションへバグ報告をお願いします。そして、以下で説明している　Etoys-To-Goを試してみてください。"
+
+msgid "Instead of using the browser plugin, you can save {prjlink} and open it in Etoys."
+msgstr "ブラウザーのプラグインを使う代わりに、{prjlink} を保存して Etoysで開くこともできます。"
+
+msgid "Perhaps you want to use {dld}Etoys-To-Go{a}, which should work equally well on Linux, Mac, or Windows machines."
+msgstr "{dld}Etoys-To-Go{a} を使ってみるといいかもしれません。これは、Linux, Mac, Windowsで同じように動きます。"
